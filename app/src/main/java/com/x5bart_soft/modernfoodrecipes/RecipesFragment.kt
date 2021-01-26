@@ -18,9 +18,14 @@ class RecipesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+
+
         binding = FragmentRecipesBinding.inflate(layoutInflater)
+        binding.recyclerView.showShimmer()
         return binding.root
     }
+
+
 
 
 }
