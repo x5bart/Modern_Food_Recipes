@@ -6,17 +6,17 @@
     app:startDestination="@id/recipesFragment">
     <fragment
         android:id="@+id/recipesFragment"
-        android:name="com.x5bart_soft.modernfoodrecipes.RecipesFragment"
+        android:name="com.x5bart_soft.modernfoodrecipes.ui.fragments.recipes.RecipesFragment"
         android:label="Recipes"
         tools:layout="@layout/fragment_recipes" />
     <fragment
         android:id="@+id/favoriteRecipesFragment"
-        android:name="com.x5bart_soft.modernfoodrecipes.FavoriteRecipesFragment"
+        android:name="com.x5bart_soft.modernfoodrecipes.ui.fragments.favorits.FavoriteRecipesFragment"
         android:label="Favorite"
         tools:layout="@layout/fragment_favorite_recipes" />
     <fragment
         android:id="@+id/foodJokeFragment"
-        android:name="com.x5bart_soft.modernfoodrecipes.FoodJokeFragment"
+        android:name="com.x5bart_soft.modernfoodrecipes.ui.fragments.foodjoke.FoodJokeFragment"
         android:label="Joke"
         tools:layout="@layout/fragment_food_joke" />
 </navigation>

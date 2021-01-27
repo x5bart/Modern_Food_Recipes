@@ -1,4 +1,4 @@
-package com.x5bart_soft.modernfoodrecipes
+package com.x5bart_soft.modernfoodrecipes.ui.fragments.recipes
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

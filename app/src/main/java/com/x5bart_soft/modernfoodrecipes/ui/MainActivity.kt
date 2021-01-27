@@ -1,4 +1,4 @@
-package com.x5bart_soft.modernfoodrecipes
+package com.x5bart_soft.modernfoodrecipes.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,6 +7,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.x5bart_soft.modernfoodrecipes.R
 import com.x5bart_soft.modernfoodrecipes.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
