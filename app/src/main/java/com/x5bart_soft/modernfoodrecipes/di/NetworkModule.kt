@@ -1,7 +1,7 @@
 package com.x5bart_soft.modernfoodrecipes.di
 
-import com.x5bart_soft.modernfoodrecipes.Constants.Companion.BASE_URL
-import com.x5bart_soft.modernfoodrecipes.FoodRecepesApi
+import com.x5bart_soft.modernfoodrecipes.util.Constants.Companion.BASE_URL
+import com.x5bart_soft.modernfoodrecipes.date.network.FoodRecepesApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

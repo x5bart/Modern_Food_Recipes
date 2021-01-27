@@ -1,4 +1,4 @@
-package com.x5bart_soft.modernfoodrecipes
+package com.x5bart_soft.modernfoodrecipes.date.network
 
 import com.x5bart_soft.modernfoodrecipes.models.FoodRecipe
 import retrofit2.Response

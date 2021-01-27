@@ -1,8 +1,8 @@
-package com.x5bart_soft.modernfoodrecipes
+package com.x5bart_soft.modernfoodrecipes.date
 
+import com.x5bart_soft.modernfoodrecipes.date.network.FoodRecepesApi
 import com.x5bart_soft.modernfoodrecipes.models.FoodRecipe
 import retrofit2.Response
-import java.time.temporal.TemporalQueries
 import javax.inject.Inject
 
 class RemoteDataSource @Inject constructor(private val foodRecepesApi: FoodRecepesApi) {
