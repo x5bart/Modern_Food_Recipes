@@ -2,10 +2,12 @@ package com.x5bart_soft.modernfoodrecipes.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.x5bart_soft.modernfoodrecipes.databinding.RecipesRowLayoutBinding
 import com.x5bart_soft.modernfoodrecipes.models.FoodRecipe
 import com.x5bart_soft.modernfoodrecipes.models.Result
+import com.x5bart_soft.modernfoodrecipes.util.RecipesDiffUtil
 
 class RecipesAdapter : RecyclerView.Adapter<RecipesAdapter.MyViewHolder>() {
 
@@ -42,8 +44,10 @@ class RecipesAdapter : RecyclerView.Adapter<RecipesAdapter.MyViewHolder>() {
         return recipe.size
     }
 
-    fun setdata(newData:FoodRecipe){
+    fun setdata(newData: FoodRecipe) {
+        val recipesDiffUtil = RecipesDiffUtil(recipe, newData.results)
+        val diffUtilResult = DiffUtil.calculateDiff(recipesDiffUtil)
         recipe = newData.results
-        notifyDataSetChanged()
+        diffUtilResult.dispatchUpdatesTo(this)
     }
 }
