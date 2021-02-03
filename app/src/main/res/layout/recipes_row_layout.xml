@@ -37,12 +37,14 @@
 
                 <ImageView
                     android:id="@+id/recepies_imageView"
+                    loadImageFromUrl="@{result.image}"
                     android:layout_width="200dp"
                     android:layout_height="0dp"
                     android:scaleType="centerCrop"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0"
                     tools:srcCompat="@tools:sample/avatars" />
 
                 <TextView
@@ -85,9 +87,7 @@
                     android:layout_marginTop="12dp"
                     android:layout_marginBottom="36dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="@+id/heart_textView"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="@+id/heart_textView"
+                    app:layout_constraintStart_toStartOf="@+id/description_textView"
                     app:layout_constraintTop_toBottomOf="@+id/description_textView"
                     app:layout_constraintVertical_bias="0.0"
                     app:srcCompat="@drawable/ic_heart"
@@ -95,13 +95,14 @@
 
                 <TextView
                     android:id="@+id/heart_textView"
-                    setNumberOfLikes="@{result.aggregateLikes"
+                    setNumberOfLikes="@{result.aggregateLikes}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="100"
                     android:textAlignment="center"
                     android:textColor="@color/red"
-                    app:layout_constraintStart_toStartOf="@+id/description_textView"
+                    app:layout_constraintEnd_toEndOf="@+id/heart_imageView"
+                    app:layout_constraintStart_toStartOf="@+id/heart_imageView"
                     app:layout_constraintTop_toBottomOf="@+id/heart_imageView" />
 
                 <ImageView
@@ -119,16 +120,16 @@
                     setNumberOfMinutes="@{result.readyInMinutes}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
                     android:text="100"
                     android:textAlignment="center"
                     android:textColor="@color/yellow"
+                    app:layout_constraintEnd_toStartOf="@+id/leaf_textView"
                     app:layout_constraintStart_toEndOf="@+id/heart_textView"
                     app:layout_constraintTop_toBottomOf="@+id/clock_imageView" />
 
                 <ImageView
                     android:id="@+id/leaf_imageView"
-                    applyVeganColor="@{result.vegan"
+                    applyVeganColor="@{result.vegan}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:layout_constraintEnd_toEndOf="@+id/leaf_textView"
@@ -138,13 +139,13 @@
 
                 <TextView
                     android:id="@+id/leaf_textView"
-                    applyVeganColor="@{result.vegan"
+                    applyVeganColor="@{result.vegan}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
+                    android:layout_marginEnd="12dp"
                     android:text="Vegan"
                     android:textAlignment="center"
-                    app:layout_constraintStart_toEndOf="@+id/clock_textView"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/leaf_imageView" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 

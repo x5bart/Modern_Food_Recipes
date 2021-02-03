@@ -1,15 +1,25 @@
 package com.x5bart_soft.modernfoodrecipes.bindigAdapters
 
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
+import coil.load
 import com.x5bart_soft.modernfoodrecipes.R
 
 class RecipesRowBinding {
 
     companion object {
+        @BindingAdapter("loadImageFromUrl")
+        @JvmStatic
+        fun loadImageFromUrl(imageView: ImageView, imageUrl: String) {
+            imageView.load(imageUrl) {
+                crossfade(600)
+            }
+        }
+
         @BindingAdapter("setNumberOfLikes")
         @JvmStatic
         fun setNumberOfLikes(textView: TextView, likes: Int) {

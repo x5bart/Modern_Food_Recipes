@@ -1,4 +1,4 @@
-package com.x5bart_soft.modernfoodrecipes
+package com.x5bart_soft.modernfoodrecipes.viewmodel
 
 import android.app.Application
 import android.content.Context

@@ -6,7 +6,7 @@ import retrofit2.http.GET
 import retrofit2.http.QueryMap
 import java.time.temporal.TemporalQueries
 
-interface FoodRecepesApi {
+interface FoodRecipesApi {
 
     @GET("/recipes/complexSearch")
    suspend fun getRecipes(

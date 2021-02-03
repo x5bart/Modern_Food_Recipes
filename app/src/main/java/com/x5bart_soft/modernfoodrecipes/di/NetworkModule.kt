@@ -1,7 +1,7 @@
 package com.x5bart_soft.modernfoodrecipes.di
 
 import com.x5bart_soft.modernfoodrecipes.util.Constants.Companion.BASE_URL
-import com.x5bart_soft.modernfoodrecipes.date.network.FoodRecepesApi
+import com.x5bart_soft.modernfoodrecipes.date.network.FoodRecipesApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -48,7 +48,7 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun provideApiService(retrofit: Retrofit): FoodRecepesApi {
-        return retrofit.create(FoodRecepesApi::class.java)
+    fun provideApiService(retrofit: Retrofit): FoodRecipesApi {
+        return retrofit.create(FoodRecipesApi::class.java)
     }
 }
