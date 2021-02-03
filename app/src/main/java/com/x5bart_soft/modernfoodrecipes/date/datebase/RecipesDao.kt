@@ -1,4 +1,4 @@
-package com.x5bart_soft.modernfoodrecipes
+package com.x5bart_soft.modernfoodrecipes.date.datebase
 
 import androidx.room.Dao
 import androidx.room.Insert

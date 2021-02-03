@@ -1,4 +1,4 @@
-package com.x5bart_soft.modernfoodrecipes
+package com.x5bart_soft.modernfoodrecipes.date.datebase
 
 import androidx.room.TypeConverter
 import com.google.gson.Gson
@@ -10,12 +10,12 @@ class RecipesTypeConverter {
     var gson = Gson()
 
     @TypeConverter
-    fun foodRecipesToString(foodRecipe: FoodRecipe): String {
+    fun foodRecipeToString(foodRecipe: FoodRecipe): String {
         return gson.toJson(foodRecipe)
     }
 
     @TypeConverter
-    fun stringToFoodRecipes(date: String): FoodRecipe {
+    fun stringToFoodRecipe(date: String): FoodRecipe {
         val listType = object : TypeToken<FoodRecipe>() {}.type
         return gson.fromJson(date, listType)
     }
