@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.x5bart_soft.modernfoodrecipes.viewmodel.MainViewModel
 import com.x5bart_soft.modernfoodrecipes.adapters.RecipesAdapter
@@ -15,6 +16,7 @@ import com.x5bart_soft.modernfoodrecipes.util.Constants.Companion.API_KEY
 import com.x5bart_soft.modernfoodrecipes.util.NetworkResult
 import com.x5bart_soft.modernfoodrecipes.viewmodel.RecipesViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class RecipesFragment : Fragment() {
@@ -41,9 +43,29 @@ class RecipesFragment : Fragment() {
 
 
         setupRecyclerView()
-        requestApiData()
+        readDatabase()
+
 
         return binding.root
+    }
+
+    private fun setupRecyclerView() {
+        binding.recyclerView.adapter = mAdapter
+        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        showShimmerEffect()
+    }
+
+    private fun readDatabase() {
+   lifecycleScope.launch {
+       mainViewModel.readRecipes.observe(viewLifecycleOwner, { database ->
+           if (database.isNotEmpty()) {
+               mAdapter.setData(database[0].foodRecipe)
+               hideShimmerEffect()
+           } else {
+               requestApiData()
+           }
+       })
+   }
     }
 
     private fun requestApiData() {
@@ -56,6 +78,7 @@ class RecipesFragment : Fragment() {
                 }
                 is NetworkResult.Error -> {
                     hideShimmerEffect()
+                    loadDateFromCache()
                     Toast.makeText(
                         requireContext(),
                         response.message.toString(),
@@ -67,12 +90,16 @@ class RecipesFragment : Fragment() {
         })
     }
 
-
-    private fun setupRecyclerView() {
-        binding.recyclerView.adapter = mAdapter
-        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        showShimmerEffect()
+    private fun loadDateFromCache() {
+     lifecycleScope.launch {
+         mainViewModel.readRecipes.observe(viewLifecycleOwner, { database ->
+             if (database.isNotEmpty()) {
+                 mAdapter.setData(database[0].foodRecipe)
+             }
+         })
+     }
     }
+
 
     private fun showShimmerEffect() {
         binding.recyclerView.showShimmer()
