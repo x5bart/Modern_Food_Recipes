@@ -45,7 +45,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.0"
-                    tools:srcCompat="@tools:sample/avatars" />
+                    tools:srcCompat="@drawable/ic_error_placeholder" />
 
                 <TextView
                     android:id="@+id/title_textView"

@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.x5bart_soft.modernfoodrecipes.viewmodel.MainViewModel
 import com.x5bart_soft.modernfoodrecipes.adapters.RecipesAdapter
 import com.x5bart_soft.modernfoodrecipes.databinding.FragmentRecipesBinding
-import com.x5bart_soft.modernfoodrecipes.util.Constants.Companion.API_KEY
 import com.x5bart_soft.modernfoodrecipes.util.NetworkResult
 import com.x5bart_soft.modernfoodrecipes.util.observeOnce
 import com.x5bart_soft.modernfoodrecipes.viewmodel.RecipesViewModel
@@ -22,10 +21,13 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class RecipesFragment : Fragment() {
 
-    private lateinit var binding: FragmentRecipesBinding
+
+    private var _binding: FragmentRecipesBinding? = null
     private val mAdapter by lazy { RecipesAdapter() }
     private lateinit var mainViewModel: MainViewModel
     private lateinit var recipesViewModel: RecipesViewModel
+    private val binding get() = _binding!!
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         mainViewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
@@ -39,7 +41,9 @@ class RecipesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentRecipesBinding.inflate(layoutInflater)
+        _binding = FragmentRecipesBinding.inflate(inflater, container, false)
+        binding.lifecycleOwner = this
+        binding.mainViewModel = mainViewModel
 
 
 
@@ -57,16 +61,16 @@ class RecipesFragment : Fragment() {
     }
 
     private fun readDatabase() {
-   lifecycleScope.launch {
-       mainViewModel.readRecipes.observeOnce(viewLifecycleOwner, { database ->
-           if (database.isNotEmpty()) {
-               mAdapter.setData(database[0].foodRecipe)
-               hideShimmerEffect()
-           } else {
-               requestApiData()
-           }
-       })
-   }
+        lifecycleScope.launch {
+            mainViewModel.readRecipes.observeOnce(viewLifecycleOwner, { database ->
+                if (database.isNotEmpty()) {
+                    mAdapter.setData(database[0].foodRecipe)
+                    hideShimmerEffect()
+                } else {
+                    requestApiData()
+                }
+            })
+        }
     }
 
     private fun requestApiData() {
@@ -92,13 +96,13 @@ class RecipesFragment : Fragment() {
     }
 
     private fun loadDateFromCache() {
-     lifecycleScope.launch {
-         mainViewModel.readRecipes.observe(viewLifecycleOwner, { database ->
-             if (database.isNotEmpty()) {
-                 mAdapter.setData(database[0].foodRecipe)
-             }
-         })
-     }
+        lifecycleScope.launch {
+            mainViewModel.readRecipes.observe(viewLifecycleOwner, { database ->
+                if (database.isNotEmpty()) {
+                    mAdapter.setData(database[0].foodRecipe)
+                }
+            })
+        }
     }
 
 
@@ -110,5 +114,8 @@ class RecipesFragment : Fragment() {
         binding.recyclerView.hideShimmer()
     }
 
-
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
 }
